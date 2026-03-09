@@ -3,7 +3,12 @@
     internal class Program
     {
         static void Main(string[] args)
-        { }
+        {
+            // Luodaan uusi ateria, joka koostuu lihasta, perunasta ja pippurikastikkeesta
+            Ateria ateria = new Ateria(PääRaakaAine.Liha, Lisuke.Peruna, Kastike.Pippuri);
+            // Tulostetaan aterian sisältö
+            Console.WriteLine(ateria);
+        }
         enum PääRaakaAine
         {
             Liha,
