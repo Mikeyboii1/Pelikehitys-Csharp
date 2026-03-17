@@ -4,9 +4,11 @@ namespace Tehtävä_3___Nuolia_kaupan
 {
     internal class Nuoli
     {
-        private Kärki _kärki;
-        private Sulat _sulat;
-        private int _pituus;
+        // Auto-properties replace the previous private fields.
+        // Properties expose read access publicly and mutation only inside the class.
+        public Kärki Kärki { get; private set; }
+        public Sulat Sulat { get; private set; }
+        public int Pituus { get; private set; }
 
         public Nuoli(Kärki kärki, Sulat sulat, int pituus)
         {
@@ -15,13 +17,14 @@ namespace Tehtävä_3___Nuolia_kaupan
                 throw new ArgumentOutOfRangeException(nameof(pituus), "Pituus ei voi olla negatiivinen.");
             }
 
-            _kärki = kärki;
-            _sulat = sulat;
-            _pituus = pituus;
+            Kärki = kärki;
+            Sulat = sulat;
+            Pituus = pituus;
         }
 
-        public Kärki GetKärki() => _kärki;
-        public Sulat GetSulat() => _sulat;
-        public int GetPituus() => _pituus;
+        // Legacy getter methods kept for compatibility with existing code.
+        public Kärki GetKärki() => Kärki;
+        public Sulat GetSulat() => Sulat;
+        public int GetPituus() => Pituus;
     }
 }
