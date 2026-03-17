@@ -21,12 +21,12 @@ namespace Tehtävä_4___Seikkailijanreppu
         public override string ToString() => GetType().Name;
     }
 
-    internal class Nuoli : Tavara { public Nuoli() : base(0.1, 0.05) { } }
-    internal class Jousi : Tavara { public Jousi() : base(1.0, 4.0) { } }
-    internal class Koysi : Tavara { public Koysi() : base(1.0, 1.5) { } }
-    internal class Vesi : Tavara { public Vesi() : base(2.0, 2.0) { } }
-    internal class RuokaAnnos : Tavara { public RuokaAnnos() : base(1.0, 0.5) { } }
-    internal class Miekka : Tavara { public Miekka() : base(5.0, 3.0) { } }
+    internal class Nuoli : Tavara { public Nuoli() : base(0.1, 0.05) { } public override string ToString() => "Nuoli"; }
+    internal class Jousi : Tavara { public Jousi() : base(1.0, 4.0) { } public override string ToString() => "Jousi"; }
+    internal class Koysi : Tavara { public Koysi() : base(1.0, 1.5) { } public override string ToString() => "Köysi"; }
+    internal class Vesi : Tavara { public Vesi() : base(2.0, 2.0) { } public override string ToString() => "Vesi"; }
+    internal class RuokaAnnos : Tavara { public RuokaAnnos() : base(1.0, 0.5) { } public override string ToString() => "Ruoka-annos"; }
+    internal class Miekka : Tavara { public Miekka() : base(5.0, 3.0) { } public override string ToString() => "Miekka"; }
 
     internal class Reppu
     {
@@ -61,6 +61,13 @@ namespace Tehtävä_4___Seikkailijanreppu
         }
 
         public IReadOnlyList<Tavara> Sisalto => _sisalto;
+
+        // Override ToString to list contents in Finnish
+        public override string ToString()
+        {
+            if (_sisalto.Count == 0) return "Reppu on tyhjä.";
+            return "Reppussa on seuraavat tavarat: " + string.Join(", ", _sisalto.Select(t => t.ToString()));
+        }
     }
 
 
@@ -76,6 +83,9 @@ namespace Tehtävä_4___Seikkailijanreppu
             double maxVolume = ReadDouble("Maksimi tilavuus", 30.0);
 
             var reppu = new Reppu(maxCount, maxWeight, maxVolume);
+
+            // Print backpack contents using the new ToString override (before adding items)
+            Console.WriteLine(reppu);
 
             Func<Tavara>[] factories = {
                 null!,
