@@ -51,10 +51,12 @@ namespace Tehtävä_3___Nuolia_kaupan
                 return;
             }
 
-            double hinta = LaskeHinta(kärki, sulat, pituus);
+            // Use Nuoli class with private fields and getters
+            var nuoli = new Nuoli(kärki, sulat, pituus);
+            double hinta = LaskeHinta(nuoli.GetKärki(), nuoli.GetSulat(), nuoli.GetPituus());
 
-            // Tämän nuolen hinta on jotain jotain kultarahaa.
-            Console.WriteLine($"Tämän nuolen hinta on {hinta:F2} kultarahaa.");
+            // Output as requested
+            Console.WriteLine($"Tämän nuolen hinta on ({hinta:F2}) kultarahaa.");
         }
 
         private static bool TryParseKärki(string input, out Kärki kärki)
