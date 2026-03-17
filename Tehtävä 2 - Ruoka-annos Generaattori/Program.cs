@@ -1,65 +1,87 @@
 ﻿namespace Tehtävä_2___Ruoka_annos_Generaattori
 {
-    internal class Program
+    enum PääRaakaAine
+    {
+        Lihaa,
+        Tofua
+    }
+    enum Lisuke
+    {
+        Perunaa,
+        Riisiä,
+        Pastaa
+    }
+    enum Kastike
+    {
+        Pippuri,
+        Soijakastike
+    }
+
+    internal partial class Program
     {
         static void Main(string[] args)
         {
-            // Luodaan uusi ateria, joka koostuu lihasta, perunasta ja pippurikastikkeesta
-            Ateria ateria = new Ateria(PääRaakaAine.Liha, Lisuke.Peruna, Kastike.Pippuri);
-            // Tulostetaan aterian sisältö
-            Console.WriteLine(ateria);
-        }
-        enum PääRaakaAine
-        {
-            Liha,
-            Tofu
-        }
-        enum Lisuke
-        {
-            Peruna,
-            Riisi
-        }
-        enum Kastike
-        {
-            Pippuri,
-            Soijakastike
-        }
-
-        class Ateria
-        {
-            // Ateria koostuu kolmesta aineksesta
-            // Ne ovat private jotta niitä ei voi muuttaa aterian
-            // luomisen jälkeen
-            private PääRaakaAine pääaine;
-            private Lisuke lisuke;
-            private Kastike kastike;
-
-            // Konstruktori määrää että uuden aterian voi luoda vain
-            // jos antaa kaikki kolme ainesta
-            public Ateria(PääRaakaAine pääaine, Lisuke lisuke, Kastike kastike)
+            // Ateria ateria = new Ateria();
+            Console.WriteLine("Pääraaka-aine (nautaa, kanaa, tofu):");
+            string pääaine = Console.ReadLine();
+            if (pääaine == "nautaa")
             {
-                // Tämän ateria olion pääaineeksi tulee parametrina
-                // annettu pääaine: this. viittaa olioon
-                this.pääaine = pääaine;
-                this.lisuke = lisuke;
-                this.kastike = kastike;
+                pääaine = PääRaakaAine.Lihaa.ToString();
             }
-
-            // Koska kastike on private, pitää tehdä funktio joka on public
-            // jotta sen voi lukea
-            public Kastike AnnaKastike()
+            else if (pääaine == "kanaa")
             {
-                return this.kastike;
+                pääaine = PääRaakaAine.Lihaa.ToString();
             }
-
-            // ToString auttaa aterian tulostamisessa.
-            // Ohjelmoijan ei tarvitse muistaa mitä kaikkea ateriassa on
-            // Jos/kun Ateria luokka muuttuu, tarvitsee tulostuskoodi muuttaa vain
-            // tässä funktiossa
-            public override string ToString()
+            else if (pääaine == "tofu")
             {
-                return $"Pääraaka-aine: {pääaine}, lisuke: {lisuke}, kastike: {kastike}";
+                pääaine = PääRaakaAine.Tofua.ToString();
             }
+            else
+            {
+                Console.WriteLine("Virheellinen pääraaka-aine");
+                return;
+            }
+            // lisuke valinta
+            Console.WriteLine("Lisukeet (perunaa, riisiä, pastaa):");
+            string lisuke = Console.ReadLine();
+            if (lisuke == "perunaa")
+            {
+                lisuke = Lisuke.Perunaa.ToString();
+            }
+            else if (lisuke == "riisiä")
+            {
+                lisuke = Lisuke.Riisiä.ToString();
+            }
+            else if (lisuke == "pastaa")
+            {
+                lisuke = Lisuke.Pastaa.ToString();
+            }
+            else
+            {
+                Console.WriteLine("Virheellinen lisuke");
+                return;
+            }
+            // kastike valinta
+            Console.WriteLine("Kastikkeet (pippuri, soijakastike, chilli):");
+            string kastike = Console.ReadLine();
+            if (kastike == "pippuri")
+            {
+                kastike = Kastike.Pippuri.ToString();
+            }
+            else if (kastike == "soijakastike")
+            {
+                kastike = Kastike.Soijakastike.ToString();
+            }
+            else if (kastike == "chilli")
+            {
+                kastike = "Chilli";
+            }
+            else
+            {
+                Console.WriteLine("Virheellinen kastike");
+                return;
+            }
+            Console.WriteLine($"{pääaine} ja {lisuke} {kastike}-kastikkeella.");
         }
     }
 }
