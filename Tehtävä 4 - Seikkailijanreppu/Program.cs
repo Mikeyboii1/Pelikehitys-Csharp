@@ -63,6 +63,7 @@ namespace Tehtävä_4___Seikkailijanreppu
         public IReadOnlyList<Tavara> Sisalto => _sisalto;
     }
 
+
     internal class Program
     {
         static void Main()
